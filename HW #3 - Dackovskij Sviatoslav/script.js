@@ -10,9 +10,84 @@ var str1 = '';
 }
 
 // #2 convert
+
+function convert(hash) {
+    arr = [];
+    var i = 0;
+
+    for (var key in hash) {
+        arr[i] = key + ', ' + hash[key];
+        i++;
+    }
+    return arr;
+}
+
 // #3 Complete the method/function so that it converts dash/underscore delimited words into camel casing.
+function toCamelCase(str) {
+    var str1 = '';
+
+        for (var i = 0; i < str.length; i++) {
+            if (str[i] === '_' || str[i] === '-') {
+                str1 = str1 + str[i+1].toUpperCase();
+                i++;
+            }
+            else str1 = str1 + str[i];
+        }
+
+        return str1;
+}
 // #4 function that takes a sentence (string) and reverses each word in the sentence.
+
+function reverse(str) {
+
+    var str1='';
+
+    if ( str[str.length - 1] !== ' ') {
+        str = str + ' ';
+    }
+
+    for (var i = 0; i < str.length - 1; i++) {
+
+        if (str[i] === ' ' || i === 0) {
+            if (str[i] === ' ') {
+                i++
+            }
+
+            for (var k = i; str[k] !== ' ' && k < str.length - 1; k++) {
+        }
+            for (var j = k; j >= i; j--)  {
+                str1 = str1 + str[j];
+            }
+        }
+
+    }
+
+    if (str[0] !== ' ') {
+        return str1.slice(1,str1.length);
+    }
+
+    return str1;
+}
+
 // #5 stringExpansion
+
+function stringExpansion (str) {
+
+   var str1 = '';
+
+   for (var i = 0; i < str.length; i++) {
+       if (isNaN (str[i])) {
+           for (var j = 0; j < Number(str[i-1]) || j < 1; j++) {
+               if (str[i - 1] === '0') {
+                   break;
+               }
+           str1 = str1 + str[i];
+           }
+       }
+   }
+return str1;
+}
+
 // #6 functions that returns the largest and smallest number passed like a argument.
 function largest() {
     var i = arguments[0];
@@ -49,10 +124,6 @@ function transform(arr) {
     }
     return elementsAll;
 }
-
-var baseArray = [10, 20, 30, 40, 50];
-var newArray = transform(baseArray);
-newArray[3](); // should return 40
 
 // #8 Function expects arbitrary number of digit arguments and returns compound value of them.
 
