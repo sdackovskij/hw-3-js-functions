@@ -2,12 +2,22 @@
 // #1 splitAndMerge
 function splitAndMerge(str, sp) {
 var str1 = '';
-    for (var char of str) {
-        if (char === ' ') {}
-            else str1 = str1 + char + sp;
+    for (var i = 0; i < str.length; i++) {
+        if (str[i] === ' ') {
+            str1 = str1 + " ";
+        }
+            else if (str[i+1] === ' ' || i === str.length - 1) {
+                str1 = str1 + str[i];
+            }
+            else str1 = str1 + str[i] + sp;
     }
-   return str1.slice(0, str1.length - 1);
+   return str1;
 }
+
+//console.log(splitAndMerge("My name is John"," ")); //should return "M y n a m e i s J o h n"
+//console.log(splitAndMerge("Hello World!",",")); //should return "H,e,l,l,o W,o,r,l,d,!"
+
+//console.log(splitAndMerge("Hello World!",","));
 
 // #2 convert
 
@@ -21,6 +31,9 @@ function convert(hash) {
     }
     return arr;
 }
+
+//console.log(convert({name: 'Jeremy', age: 24, role: 'Software Engineer'}));
+//should be [["name", "Jeremy"], ["age", 24], ["role", "Software Engineer"]]
 
 // #3 Complete the method/function so that it converts dash/underscore delimited words into camel casing.
 function toCamelCase(str) {
@@ -36,6 +49,10 @@ function toCamelCase(str) {
 
         return str1;
 }
+
+//console.log(toCamelCase("the-stealth-warrior")); // returns "theStealthWarrior"
+//console.log(toCamelCase("The_Stealth_Warrior")); // returns "TheStealthWarrior"
+
 // #4 function that takes a sentence (string) and reverses each word in the sentence.
 
 function reverse(str) {
@@ -69,6 +86,8 @@ function reverse(str) {
     return str1;
 }
 
+//console.log(reverse(" A fun little challenge! ")); // " A nuf elttil !egnellahc "
+
 // #5 stringExpansion
 
 function stringExpansion (str) {
@@ -88,6 +107,10 @@ function stringExpansion (str) {
 return str1;
 }
 
+//console.log(stringExpansion('3D2a5d2f')); //'DDDaadddddff'
+//console.log(stringExpansion('3d332f2a')); // 'dddffaa'
+//console.log(stringExpansion('abcde')); //'abcde'
+
 // #6 functions that returns the largest and smallest number passed like a argument.
 function largest() {
     var i = arguments[0];
@@ -99,7 +122,6 @@ function largest() {
     return i;
 }
 
-
 function smallest() {
     var i = arguments[0];
     for (var k = 1; k < arguments.length; k++) {
@@ -109,6 +131,10 @@ function smallest() {
     }
     return i;
 }
+
+//console.log(largest(2, 0.1, -5, 100, 3)); // 100
+//console.log(smallest(2, 0.1, -5, 100, 3));// -5
+
 // #7 function transform that will transform array of numbers to array of functions that will return value from a base array.
 
 function transform(arr) {
@@ -125,6 +151,11 @@ function transform(arr) {
     return elementsAll;
 }
 
+/* const baseArray = [10, 20, 30, 40, 50];
+const newArray = transform(baseArray);
+console.log(newArray[3]()); // should return 40
+console.log(newArray[4]()); // should return 50 */
+
 // #8 Function expects arbitrary number of digit arguments and returns compound value of them.
 
 function sum() {
@@ -140,6 +171,7 @@ function sum() {
     }
 }
 
+//console.log(sum(1,3,5,7));
 
 // #9 Function expects number and logs values one by one till zero with one second delay.
 
@@ -150,7 +182,21 @@ function countDown(n) {
     }
 }
 
+//countDown(5);
+
 // #10 polyfill for a .bind()
 
+Function.prototype.myBind = function (context) {
+    var fn = this;
+        return function(...ars) {
+            return fn.apply(context, ars);
+        }
+};
 
+function addPropToNumber(number) {
+    return this.prop + number;
+}
+var bound = addPropToNumber.myBind({ prop: 9 });
+
+//console.log(bound(1)); // 10
 
